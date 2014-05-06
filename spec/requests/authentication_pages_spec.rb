@@ -91,6 +91,27 @@ describe "Authentication" do
           specify { expect(response).to redirect_to(signin_path) }
         end
       end
+
+      describe "in the Reviews controller" do
+
+        describe "submitting to the create action" do
+          before { post reviews_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        # Need to add update test like the one below, but not sure of format, might need to create
+        # a dummy review that I try to patch to.  It is the before action
+        # I'm not sure about, others should be ok.
+        # describe "submitting to the update action" do
+          # before { patch review_path(review) }
+          # specify { expect(response).to redirect_to(signin_path) }
+        # end
+
+        describe "submitting to the destroy action" do
+          before { delete review_path(FactoryGirl.create(:review)) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
     end
 
     describe "as wrong user" do

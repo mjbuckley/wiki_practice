@@ -14,6 +14,7 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
+  it { should respond_to(:reviews) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -110,5 +111,24 @@ describe User do
   describe "remember token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
+  end
+
+  describe "review associations" do
+    before { @user.save}
+    let!(:older_review) do
+      FactoryGirl.create(:review, rating: 3, user: @user, page_id: 234, rev_id: 23456, comment: "lorem ipsum", title: "page title", created_at: 1.day.ago)
+    end
+    let!(:newer_review) do
+      FactoryGirl.create(:review, rating: 3, user: @user, page_id: 234, rev_id: 23456, comment: "lorem ipsum", title: "page title", created_at: 1.hour.ago)
+    end
+
+    it "should destroy associated reviews" do
+      reviews = @user.reviews.to_a
+      @user.destroy
+      expect(reviews).not_to be_empty
+      reviews.each do |review|
+        expect(Review.where(id: review.id)).to be_empty
+      end
+    end
   end
 end

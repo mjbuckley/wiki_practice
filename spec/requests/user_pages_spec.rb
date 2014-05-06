@@ -54,10 +54,19 @@ describe "UserPages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:r1) { FactoryGirl.create(:review, rating: 3, user: user, page_id: 345, rev_id: 34567, comment: "foo bar", title: "page title") }
+    let!(:r2) { FactoryGirl.create(:review, rating: 3, user: user, page_id: 456, rev_id: 45678, comment: "foo bar biz", title: "page title2") }
+    
     before { visit user_path(user) }
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+
+    describe "reviews" do
+      it { should have_content(r1.comment) }
+      it { should have_content(r2.comment) }
+      it { should have_content(user.reviews.count) }
+    end
   end
 
   describe "signup page" do

@@ -6,14 +6,19 @@
         <%= @user.name %>
       </h1>
     </section>
+    <% if signed_in? && current_user?(@user) %>
+    <section>
+      <%= link_to "Add a review", new_review_path, class: "btn btn-large btn-primary" %>
+    </section>
+    <% end %>
   </aside>
   <div class="span8">
+    <h3>Reviews (<%= @user.reviews.count %>)</h3>
     <% if @user.reviews.any? %>
-      <h3>Reviews (<%= @user.reviews.count %>)</h3>
-      <ol class="reviews">
-        <%= render @reviews %>
-      </ol>
-      <%= will_paginate @reviews %>
+    <ol class="reviews">
+      <%= render @reviews %>
+    </ol>
+    <%= will_paginate @reviews %>
     <% end %>
   </div>
 </div>

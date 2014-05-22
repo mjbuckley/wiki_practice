@@ -1,11 +1,11 @@
 <%= form_for(@review) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_field :title, placeholder: "Wikipedia page title" %>
-    <%= f.text_field :rating, placeholder: "Rating" %>
-    <%= f.text_field :page_id, placeholder: "Page ID" %>
-    <%= f.text_field :rev_id, placeholder: "Revision ID" %>
-    <%= f.text_area :comment, placeholder: "Compose a new review" %>
-  </div>
-  <%= f.submit "Submit review", class: "btn btn-large btn-primary" %>
+    <div class="field">
+      <%= f.text_field :title, placeholder: "Wikipedia page title" %>
+      <%= f.text_field :rev_id, placeholder: "Revision ID: Leave blank to use current page edit" %>
+      <%= f.text_field :rating, placeholder: "Rating" %>
+      <%= f.text_area :comment, placeholder: "Compose a new review" %>
+      <%# can't get dropdown working properly so using text_field for rating for now %>
+    </div>
+    <%= f.submit "Submit review", class: "btn btn-large btn-primary" %>
 <% end %>

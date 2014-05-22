@@ -1,0 +1,7 @@
+<% provide(:title, "Review for #{@review.title}") %>
+<%# make a better title so that different reviews for the same article don't all have same title %>
+<p>Review for: <%= @review.title %></p>
+<p>Page id: <%= @review.page_id %>, rev_id: <%= @review.rev_id %></p>
+<p>Review by: <%= @review.user.name %></p>
+<p>Rating: <%= @review.rating %></p>
+<p>Comments: <%= @review.comment %></p>

@@ -1,0 +1,10 @@
+<% provide(:title, 'All reviews') %>
+<h1>All reviews</h1>
+
+<ul class="users">
+  <% @reviews.each do |review| %>
+    <li>
+    <%= link_to review.title, review_path(review) %> Reviewed by: <%= review.user.name %>
+    </li>
+  <% end %>
+</ul>

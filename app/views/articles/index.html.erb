@@ -1,0 +1,10 @@
+<% provide(:title, 'Reviewed Wikipedia Articles') %>
+<h1>Reviewed Wikipedia Articles</h1>
+
+<ul class="users">
+  <% @articles.each do |article| %>
+    <li>
+      <%= link_to article.title, article_path(article) %>
+    </li>
+  <% end %>
+</ul>

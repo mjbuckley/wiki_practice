@@ -1,8 +1,10 @@
 <li>
+  <span class="comment"><%= review.title %></span>
   <span class="comment"><%= review.comment %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago.
   </span>
+  <span class="timestamp"><%= link_to "full review", review_path(review)%></span>
   <% if current_user?(review.user) %>
     <%= link_to "delete", review, method: :delete, data: { confirm: "You sure?" }, title: review.comment %>
   <% end %>

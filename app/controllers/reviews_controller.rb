@@ -6,9 +6,9 @@ class ReviewsController < ApplicationController
 
   # Need to add an update action at some point, also add that to before actions
 
-  # This works, but probably not a good way to do things once review numbers get large.
+  # This works, but probably not a good way to do things once review numbers get large.  Also, paginate.
   def index
-    @reviews = Review.all
+    @reviews = Review.all.order(created_at: :desc)
   end
 
   # This is working, but should I have @review = current_user.reviews.build instead?
@@ -21,7 +21,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-  # I should definately make this more compact, but this works for now
+  # I should definately make this more compact, but this works for now.  Perhaps case statements would be nicer.
     @review = current_user.reviews.build(review_params)
     @user = current_user
 

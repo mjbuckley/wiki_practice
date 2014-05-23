@@ -1,10 +1,10 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    @articles = Article.all.order(created_at: :desc)
   end
 
   def show
     @article = Article.find(params[:id])
-    @reviews = @article.reviews
+    @reviews = @article.reviews.order(created_at: :desc)
   end
 end

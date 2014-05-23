@@ -3,7 +3,9 @@
     <div class="field">
       <%= f.text_field :title, placeholder: "Wikipedia page title" %>
       <%= f.text_field :rev_id, placeholder: "Revision ID: Leave blank to use current page edit" %>
-      <%= f.text_field :rating, placeholder: "Rating" %>
+      <%# f.text_field :rating, placeholder: "Rating" %>
+      <%# dropdown works but be sure I have set up correctly %>
+      <%= f.select :rating, [ 'FA', 'A', 'GA', 'B', 'C', 'Start', 'Stub'], :prompt => 'Select Rating' %>
       <%= f.text_area :comment, placeholder: "Compose a new review" %>
       <%# can't get dropdown working properly so using text_field for rating for now %>
     </div>
